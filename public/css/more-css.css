@@ -1,0 +1,192 @@
+/*!
+ * Start Bootstrap - more css
+*/
+html,
+body {
+	background-color: #5b5b5b;
+    padding-top: 25px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+nav{
+  padding-right: 105px;
+  padding-left: 85px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.navbar-inverse{
+  background-color: rgba(34, 34, 34, 0.7);
+  border-bottom: none;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Footer Styles */
+
+footer {
+}
+
+.row{
+	margin-top: 50px;
+}
+.container{
+	background-color: #fff;
+}
+.img-portfolio {
+    margin-bottom: 20px;
+}
+
+.img-hover:hover {
+    opacity: 0.8;
+}
+
+/* Home Page Carousel */
+
+header.carousel {
+    height: 50%;
+    margin-top: 15px;
+    margin-bottom:50px;
+}
+
+header.carousel .item,
+header.carousel .item.active,
+header.carousel .carousel-inner {
+    height: 100%;
+}
+
+header.carousel .fill {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+/* 404 Page Styles */
+
+.error-404 {
+    font-size: 100px;
+}
+
+/* Pricing Page Styles */
+
+.price {
+    display: block;
+    font-size: 50px;
+    line-height: 50px;
+}
+
+.price sup {
+    top: -20px;
+    left: 2px;
+    font-size: 20px;
+}
+
+.period {
+    display: block;
+    font-style: italic;
+}
+
+
+
+/* Responsive Styles */
+
+@media(max-width:991px) {
+    .customer-img,
+    .img-related {
+        margin-bottom: 30px;
+    }
+}
+
+@media(max-width:767px) {
+    .img-portfolio {
+        margin-bottom: 15px;
+    }
+
+    header.carousel .carousel {
+        height: 70%;
+    }
+}
+
+.pagination>.active>a,
+.pagination>.active>a:focus, 
+.pagination>.active>a:hover, 
+.pagination>.active>span, 
+.pagination>.active>span:focus, 
+.pagination>.active>span:hover{
+    background-color: #f60;
+    border-color: #f60;	
+}
+.pagination>li>a,
+.pagination>li>span{
+	color: #f60;
+}
+.page-header{
+	text-align: center;
+}
+
+.btn-custom{
+    width: 100%;
+	padding-bottom:8px;
+	padding-top:8px;
+    font-size: 14px;
+    line-height: normal;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+	color: #fff;
+    background-color: orange;
+    border-color: orange;
+			}
+.btn-custom:hover{
+background-color: #f70;
+color: white;
+}
+
+.btn-custom-s{
+    width: 265px;
+	padding-bottom:8px;
+	padding-top:8px;
+    font-size: 14px;
+    line-height: normal;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+	color: #fff;
+    background-color: orange;
+    border-color: orange;
+			}
+.btn-custom-s:hover{
+background-color: #f70;
+color: white;
+}
+
+.btn-custom-xs{
+    width: 190px;
+	padding-bottom:5px;
+	padding-top:5px;
+    font-size: 14px;
+    line-height: normal;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+	color: #fff;
+    background-color: orange;
+    border-color: orange;
+			}
+.btn-custom-xs:hover{
+background-color: #f70;
+color: white;
+}
+
+a {
+    color: #d9534f;
+    text-decoration: none;
+}
+a:hover {
+    color: #f70;
+    text-decoration: none;
+}
+.form-control:focus{
+	border-color:#f50;
+	-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 6px #c0a16b;
+	box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 6px #c0a16b
+	}
+	.has-warning
