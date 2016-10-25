@@ -1,0 +1,41 @@
+<?php
+use Illuminate\Foundation\Auth\User;
+?>
+
+<?php $__env->startSection('title'); ?>
+<h3>Playlist</h3>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/ribbon.css" />
+<script src="js/wavesurfer.min.js"></script>
+<script src="js/app.js"></script>
+
+	<div class="row" style="margin: 30px 0">
+    	<div class="col-sm-10">
+    		<div id="waveform"></div>
+    	</div>
+    		<div class="col-sm-2">
+    			<button class="btn btn-primary btn-block" id="playPause">
+                    <span id="play">
+                    <i class="glyphicon glyphicon-play"></i>Play</span>
+					<span id="pause" style="display: none">
+					<i class="glyphicon glyphicon-pause"></i>Pause</span>
+                 </button>
+             </div>
+    </div>
+    <div class="list-group" id="playlist">
+<?php foreach($track as $track): ?>
+<?php if(!Auth::guest() && ($track->user_id == Auth::user()->id)): ?>
+     		<a href="<?php echo e($track->track_path); ?>" class="list-group-item">
+     			<i class="glyphicon glyphicon-play"></i>
+     			<?php echo e($track->track_name); ?>
+
+     			<span class="badge"></span>
+            </a>
+<?php endif; ?>
+<?php endforeach; ?>
+    </div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

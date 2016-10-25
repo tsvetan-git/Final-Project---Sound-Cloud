@@ -1,0 +1,32 @@
+<?php $__env->startSection('title'); ?>
+<h3>Search By Track Name</h3>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+    <div class="panel-body">
+        <?php echo Form::open(); ?>
+
+        <?php echo Form::label('song', 'Name:'); ?>
+
+        <?php echo Form::text('song', ''); ?>
+
+        <?php echo Form::submit('Searching..', array('class'=>'btn-custom-xs')); ?>
+
+        <?php echo Form::close(); ?>
+
+    </div>
+    <ul>
+        <?php foreach($track as $track): ?> 
+         <ul>
+            <p><?php echo e($track->track_name); ?></p>
+           <p><?php echo e($track->upload_at); ?></p>
+               <wavesurfer
+                    data-wave-color="#666" data-progress-color="#f60"
+                    data-url="<?=$track->track_path?>">
+                </wavesurfer>
+         </ul>
+         <hr>
+         <?php endforeach; ?> 
+     </ul>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.1.2/wavesurfer.min.js"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

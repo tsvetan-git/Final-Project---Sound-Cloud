@@ -1,0 +1,27 @@
+<?php $__env->startSection('title'); ?>
+<h3>Search By User Name</h3>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+    <div class="panel-body">
+        <?php echo Form::open(); ?>
+
+        <?php echo Form::label('user', 'Name:'); ?>
+
+        <?php echo Form::text('user', ''); ?>
+
+        <?php echo Form::submit('Searching..', array('class'=>'btn-custom-xs')); ?>
+
+        <?php echo Form::close(); ?>
+
+     </div>
+     <ul>
+     
+        <?php foreach($users as $user): ?> 
+        
+        <a href="<?php echo e(url('viewProfile/'.$user->name)); ?>"><?php echo e($user->name); ?></a>
+            
+             <hr>
+         <?php endforeach; ?> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.1.2/wavesurfer.min.js"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

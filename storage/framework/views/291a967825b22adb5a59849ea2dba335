@@ -1,0 +1,139 @@
+<?php $__env->startSection('title'); ?>
+<?php echo e($title); ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('slider'); ?>
+<!-- Header Carousel -->
+    <header id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+             <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="fill" style="background-image:url('images/c_img_01.jpg');"></div>
+                <div class="carousel-caption">
+                    <h2>Find the music you love. Discover new tracks.</h2>
+                </div>
+            </div>
+            <div class="item">
+                <div class="fill" style="background-image:url('images/c_img_04.jpg');"></div>
+                <div class="carousel-caption">
+                    <h2>Upload Your Audio Remixes. Publish Online Easely.</h2>
+                </div>
+            </div>
+            <div class="item">
+                <div class="fill" style="background-image:url('images/c_img_02.jpg');"></div>
+                <div class="carousel-caption">
+                    <h2>Store Your Favarote Remixes. Search For New Vibes.</h2>
+                </div>
+            </div>
+             <div class="item">
+                <div class="fill" style="background-image:url('images/c_img_03.jpg');"></div>
+                <div class="carousel-caption">
+                    <h2>Store Your Favarote Remixes. Search For New Vibes.</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+    </header>
+<!-- Header Carousel -->
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('counter'); ?>
+<div id="counter"> 
+	<span class="counter circle" style="display: inline-block;">
+	<?php $q = DB::select('select id from users'); echo (count($q))?>
+	</span>
+	<p><h4>users</h4></p>
+</div>
+<div id="counter"> 	 
+	<span class="counter circle" style="display: inline-block;">
+	<?php $q = DB::select('select track_id from track '); echo (count($q))?>
+	</span>
+	<p><h4>uploads</h4></p>
+</div>
+<div id="counter"> 		 
+	<span class="counter circle" style="display: inline-block;">
+	<?php $q = DB::select('select id from posts'); echo (count($q))?>
+	</span>
+	<p><h4>posts</h4></p> 
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
+<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script> 
+<script src="js/jquery.counterup.min.js"></script> 
+<script>
+    jQuery(document).ready(function( $ ) {
+        $('.counter').counterUp({
+            delay: 50,
+            time: 1000
+        });
+    });
+</script>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<?php if( !$posts->count() ): ?>
+There is no uploads till now.
+<?php else: ?>
+<div class="">
+
+	<?php foreach( $posts as $post ): ?>
+	
+    <?php if($post->isLiked): ?>
+        <a href="<?php echo e(route('post.like', $post->id)); ?>"></a>
+    <?php else: ?>
+        <a href="<?php echo e(route('post.like', $post->id)); ?>">Like 
+        <?php $value = DB::select(DB::raw("
+				SELECT user_id 
+				FROM `likeables` 
+				WHERE deleted_at IS NULL 
+				AND likeable_id=:id
+				"),array("id"=>$post->id));
+    			$count = count($value); echo $count;
+    	?>
+    	</a> 	
+    <?php endif; ?>	
+	<div class="list-group">
+		<div class="list-group-item">
+			<h3><a href="<?php echo e(url('/'.$post->slug)); ?>"><?php echo e($post->title); ?></a>
+				<?php if(!Auth::guest() && ($post->author_id == Auth::user()->id || Auth::user()->is_admin())): ?>
+					<?php if($post->active == '1'): ?>
+					<button class="btn" style="float: right"><a href="<?php echo e(url('edit/'.$post->slug)); ?>">Delete</a></button>
+					<?php else: ?>
+					<button class="btn" style="float: right"><a href="<?php echo e(url('edit/'.$post->slug)); ?>">Edit Draft</a></button>
+					<?php endif; ?>
+				<?php endif; ?>
+			</h3>
+			<p><?php echo e($post->created_at->format('M d,Y \a\t h:i a')); ?> By <a href="<?php echo e(url('/user/'.$post->author_id)); ?>"><?php echo e($post->author->name); ?></a></p>
+			
+		</div>
+		<div class="list-group-item">
+			<article>
+				<?php echo str_limit($post->body, $limit = 1500, $end = '....... <a href='.url("/".$post->slug).'>Read More</a>'); ?>
+
+			</article>
+		</div>
+	</div>
+	<?php endforeach; ?>
+	<?php echo $posts->render(); ?>
+
+</div>
+<?php endif; ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.1.2/wavesurfer.min.js"></script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

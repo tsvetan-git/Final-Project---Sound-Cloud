@@ -1,0 +1,43 @@
+<?php $__env->startSection('title'); ?>
+<h3>Upload</h3>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+	<div class="panel-body">
+		<div class="about-section">
+			<div class="text-content">
+				<div class="span7 offset1">
+				        <?php if(Session::has('success')): ?>
+				          <div class="alert-box success">
+				          <h2><?php echo Session::get('success'); ?></h2>
+				          </div>
+				        <?php endif; ?>
+				        <div class="secure">Notice: allowed file types/extensions in the upload field is *.mp3</div>
+				        <hr>
+				        <?php echo Form::open(array('url'=>'apply/upload', 'enctype'=>'multipart/form-data', 'method'=>'POST', 'files'=>true)); ?>
+
+				        <?php echo Form::label('track', 'Track Name: '); ?>
+
+				        <?php echo Form::text('name', ''); ?>
+
+				        <hr>
+				         <div class="control-group">
+					          <div class="controls">
+					          <?php echo Form::file('file'); ?>
+
+								  <p class="errors"><?php echo $errors->first('file'); ?></p>
+								<?php if(Session::has('error')): ?>
+								<p class="errors"><?php echo Session::get('error'); ?></p>
+								<?php endif; ?>
+					        </div>
+				        </div>
+				        <div id="success"> </div>
+				      <?php echo Form::submit('Submit', array('class'=>'btn-custom-s')); ?>
+
+				      <?php echo Form::close(); ?>
+
+				      </div>
+				   	  </div>
+					</div>
+                </div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,17 @@
+<?php $__env->startSection('title'); ?>
+<h3>Sort All Uploads By Date</h3>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+	<div class="panel-body"></div>
+	<?php foreach($track as $track): ?> 
+    <p>Name: <?php echo e($track->track_name); ?></p>
+    <p>Upload at: <?php echo e($track->upload_at); ?></p>
+	     <wavesurfer 
+	     	data-wave-color="#666" data-progress-color="#f60"
+	        data-url="<?=$track->track_path?>">
+	     </wavesurfer>
+     <hr>
+     <?php endforeach; ?> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.1.2/wavesurfer.min.js"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
